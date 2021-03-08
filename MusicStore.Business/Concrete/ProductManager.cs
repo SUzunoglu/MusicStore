@@ -39,7 +39,7 @@ namespace MusicStore.Business.Concrete
 
         public void Update(Product entity)
         {
-            _productDal.Update(entity);
+            _productDal.Update(entity); 
         }
     }
 }
