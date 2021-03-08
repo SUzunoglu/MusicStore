@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MusicStore.Entities.Abstract
 {
-    public interface IEntity
+    public interface IEntity 
     {
     }
 }
