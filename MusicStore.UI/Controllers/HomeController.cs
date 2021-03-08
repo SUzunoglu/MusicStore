@@ -16,7 +16,7 @@ namespace MusicStore.UI.Controllers
             _productService = productService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index() 
         {
             return View(_productService.GetAll());
         }
