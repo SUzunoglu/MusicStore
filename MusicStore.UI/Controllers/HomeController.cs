@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MusicStore.UI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : Controller 
     {
         private readonly IProductService _productService;
 
