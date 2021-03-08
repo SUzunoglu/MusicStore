@@ -1,0 +1,17 @@
+﻿@model List<MusicStore.Entities.Concrete.Product>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<html>
+<head>
+    <title>Index</title>
+</head>
+<body>
+    @foreach (var product in Model)
+	{
+		 <p>@product.Name</p>
+	}
+</body>
+</html>
+
