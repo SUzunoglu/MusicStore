@@ -7,7 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using MusicStore.Business.Abstract;
 using MusicStore.Business.Concrete;
 using MusicStore.DataAccess.Abstract;
-using MusicStore.DataAccess.Concrete.Memory;
+using MusicStore.DataAccess.Concrete.EntityFramework;
+//using MusicStore.DataAccess.Concrete.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace MusicStore.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IProductDal, MemoryProductDal>();
+            services.AddScoped<IProductDal, EfProductDal>();
             services.AddScoped<IProductService, ProductManager>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -39,26 +40,11 @@ namespace MusicStore.UI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                //TestDatabase.Test();
             }
 
             app.UseMvcWithDefaultRoute();
-
-
-            //app.UseStaticFiles();
-
-            //else
-            //{
-            //    app.UseExceptionHandler("/Home/Error");
-            //}
-
-            //app.UseCookiePolicy();
-
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //        name: "default",
-            //        template: "{controller=Home}/{action=Index}/{id?}");
-            //});
+            app.UseStaticFiles();
         }
     }
 }

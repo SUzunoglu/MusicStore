@@ -9,6 +9,6 @@ namespace MusicStore.DataAccess.Concrete.EntityFramework
 {
     public class EfProductDal : EfEntityRepositoryBase<Product, MusicStoreContext>, IProductDal
     {
-
+        
     }
 }
