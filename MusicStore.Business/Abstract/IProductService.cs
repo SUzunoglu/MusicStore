@@ -7,11 +7,11 @@ namespace MusicStore.Business.Abstract
 {
     public interface IProductService
     {
+        void Add(Product entity);
+        void Update(Product entity);
+        void Delete(Product entity);
+
         Product GetById(int id);
         List<Product> GetAll();
-
-        void Add(Product entity);
-        void Update(Product entity);    
-        void Delete(Product entity);
     }
 }

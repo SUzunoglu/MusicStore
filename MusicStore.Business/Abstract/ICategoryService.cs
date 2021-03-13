@@ -7,10 +7,10 @@ namespace MusicStore.Business.Abstract
 {
     public interface ICategoryService
     {
-        List<Category> GetAll();
-
         void Add(Category entity);
         void Update(Category entity);
         void Delete(Category entity);
+
+        List<Category> GetAll();
     }
 }
