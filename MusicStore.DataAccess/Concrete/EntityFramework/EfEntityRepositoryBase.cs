@@ -17,8 +17,7 @@ namespace MusicStore.DataAccess.Concrete.EntityFramework
         {
             using (TContext context = new TContext())
             {
-                var addedEntity = context.Entry(entity);
-                addedEntity.State = EntityState.Added;
+                context.Set<TEntity>().Add(entity);
                 context.SaveChanges();
             }
         }
@@ -27,8 +26,7 @@ namespace MusicStore.DataAccess.Concrete.EntityFramework
         {
             using (TContext context = new TContext())
             {
-                var deletedEntity = context.Entry(entity);
-                deletedEntity.State = EntityState.Deleted;
+                context.Set<TEntity>().Remove(entity);
                 context.SaveChanges();
             }
         }
@@ -55,7 +53,7 @@ namespace MusicStore.DataAccess.Concrete.EntityFramework
         {
             using (TContext context = new TContext())
             {
-                return context.Set<TEntity>().Find();
+                return context.Set<TEntity>().Find(id);
             }
         }
 
@@ -63,8 +61,7 @@ namespace MusicStore.DataAccess.Concrete.EntityFramework
         {
             using (TContext context = new TContext())
             {
-                var updatedEntity = context.Entry(entity);
-                updatedEntity.State = EntityState.Modified;
+                context.Entry(entity).State = EntityState.Modified;
                 context.SaveChanges();
             }
         }

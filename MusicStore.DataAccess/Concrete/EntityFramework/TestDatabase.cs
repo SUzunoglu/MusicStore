@@ -13,14 +13,14 @@
 //        {
 //            MusicStoreContext context = new MusicStoreContext();
 
-//            if (context.Database.GetPendingMigrations().Count()==0)
+//            if (context.Database.GetPendingMigrations().Count() == 0)
 //            {
-//                if (context.Categories.Count()==0)
+//                if (context.Categories.Count() == 0)
 //                {
 //                    context.Categories.AddRange(Categories);
 //                }
 
-//                if (context.Products.Count()==0)
+//                if (context.Products.Count() == 0)
 //                {
 //                    context.Products.AddRange(Products);
 //                }
