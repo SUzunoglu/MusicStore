@@ -12,6 +12,7 @@ namespace MusicStore.Business.Abstract
         void Delete(Product entity);
 
         Product GetById(int id);
+        Product GetProductDetails(int id);
         List<Product> GetAll();
     }
 }

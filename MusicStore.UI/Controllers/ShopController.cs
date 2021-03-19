@@ -20,24 +20,32 @@ namespace MusicStore.UI.Controllers
 
         public IActionResult List()
         {
-            return View(new ProductListModel 
+            return View(new ProductListModel
             {
-                Products = _productService.GetAll() 
+                Products = _productService.GetAll()
             });
         }
 
         public IActionResult Details(int? id)
         {
-            if (id==null)
+            if (id == null)
             {
                 return NotFound();
             }
-            Product product = _productService.GetById((int)id);
-            if (product==null)
+
+            Product product = _productService.GetProductDetails((int)id);
+
+            if (product == null)
             {
                 return NotFound();
             }
-            return View(product);
+
+            ProductDetailsModel model = new ProductDetailsModel
+            {
+                Product = product,
+                Categories = product.ProductCategories.Select(i => i.Category).ToList()
+            };
+            return View(model); 
         }
     }
 }
