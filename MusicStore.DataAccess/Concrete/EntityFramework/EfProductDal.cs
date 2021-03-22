@@ -22,5 +22,22 @@ namespace MusicStore.DataAccess.Concrete.EntityFramework
                             .FirstOrDefault();
             }
         }
+
+        public List<Product> GetProductsByCategory(string category)
+        {
+            using (var context = new MusicStoreContext())
+            {
+                var products = context.Products.AsQueryable();
+
+                if (!string.IsNullOrEmpty(category))
+                {
+                    products = products
+                                .Include(i => i.ProductCategories)
+                                .ThenInclude(i => i.Category)
+                                .Where(i => i.ProductCategories.Any(a => a.Category.Name == category));
+                }
+                return products.ToList();
+            }
+        }
     }
 }

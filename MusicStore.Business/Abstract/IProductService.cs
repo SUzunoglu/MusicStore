@@ -14,5 +14,6 @@ namespace MusicStore.Business.Abstract
         Product GetById(int id);
         Product GetProductDetails(int id);
         List<Product> GetAll();
+        List<Product> GetProductsByCategory(string category);
     }
 }

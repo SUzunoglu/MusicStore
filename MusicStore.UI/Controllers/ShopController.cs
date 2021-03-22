@@ -18,11 +18,11 @@ namespace MusicStore.UI.Controllers
             _productService = productService;
         }
 
-        public IActionResult List()
+        public IActionResult List(string category)
         {
             ProductListModel model = new ProductListModel
             {
-                Products = _productService.GetAll()
+                Products = _productService.GetProductsByCategory(category)
             };
 
             return View(model);

@@ -8,7 +8,6 @@ using MusicStore.Business.Abstract;
 using MusicStore.Business.Concrete;
 using MusicStore.DataAccess.Abstract;
 using MusicStore.DataAccess.Concrete.EntityFramework;
-//using MusicStore.DataAccess.Concrete.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,9 +43,20 @@ namespace MusicStore.UI
                 app.UseDeveloperExceptionPage();
                 //TestDatabase.Test();
             }
-
-            app.UseMvcWithDefaultRoute();
             app.UseStaticFiles();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "products",
+                    template: "products/{category?}",
+                    defaults: new { controller = "Shop", action = "List" }
+                );
+
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}"
+                );
+            });
         }
     }
 }
