@@ -30,6 +30,8 @@ namespace MusicStore.UI
         {
             services.AddScoped<IProductDal, EfProductDal>();
             services.AddScoped<IProductService, ProductManager>();
+            services.AddScoped<ICategoryDal, EfCategoryDal>();
+            services.AddScoped<ICategoryService, CategoryManager>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

@@ -1,34 +1,16 @@
 ﻿@model ProductListModel
 
-@{
-    ViewData["Title"] = "Index";
-}
-<body style="background-color:gold">
-    <div class="row">
-        <div class="col-md-3">
-            <ul class="list-group">
-                @*<li class="list-group-item">
-                    <a asp-controller="Shop" asp-action="List">Enstrümanlar</a>
-                </li>*@
-                <li class="list-group-item">Elektro Gitar</li>
-                <li class="list-group-item">Akustik Gitar</li>
-                <li class="list-group-item">Akustik Bateri</li>
-                <li class="list-group-item">Dijital Bateri</li>
-                <li class="list-group-item">Kuyruklu Piyano</li>
-                <li class="list-group-item">Duvar Piyano</li>
-                <li class="list-group-item">Klavsen</li>
-                <li class="list-group-item">Yan Flüt</li>
-                <li class="list-group-item">Blok Flüt</li>
-            </ul>
-        </div>
-        <div class="col-md-9">
+<div class="row">
+    <div class="col-md-3">
+        @await Component.InvokeAsync("CategoryList")
+    </div>
+    <div class="col-md-9">
 
-            <div class="row">
-                @foreach (var product in Model.Products)
-                {
-                    <partial name="_product" for="@product" />
-                }
-            </div>
+        <div class="row">
+            @foreach (var product in Model.Products)
+            {
+                <partial name="_product" for="@product" />
+            }
         </div>
     </div>
-</body>
+</div>

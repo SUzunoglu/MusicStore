@@ -6,20 +6,10 @@
 <body style="background-color:gold">
     <div class="row">
         <div class="col-md-3">
-            <ul class="list-group">
-                <li class="list-group-item">Elektro Gitar</li>
-                <li class="list-group-item">Akustik Gitar</li>
-                <li class="list-group-item">Akustik Bateri</li>
-                <li class="list-group-item">Dijital Bateri</li>
-                <li class="list-group-item">Kuyruklu Piyano</li>
-                <li class="list-group-item">Duvar Piyano</li>
-                <li class="list-group-item">Klavsen</li>
-                <li class="list-group-item">Yan Flüt</li>
-                <li class="list-group-item">Blok Flüt</li>
-            </ul>
+            @await Component.InvokeAsync("CategoryList")
         </div>
         <div class="col-md-9">
-                
+
             <partial name="_slider" />
 
             <div class="row">
