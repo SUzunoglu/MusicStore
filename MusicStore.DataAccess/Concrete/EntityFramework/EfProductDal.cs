@@ -23,7 +23,7 @@ namespace MusicStore.DataAccess.Concrete.EntityFramework
             }
         }
 
-        public List<Product> GetProductsByCategory(string category)
+        public List<Product> GetProductsByCategory(string category, int page, int pageSize)
         {
             using (var context = new MusicStoreContext())
             {
@@ -36,7 +36,8 @@ namespace MusicStore.DataAccess.Concrete.EntityFramework
                                 .ThenInclude(i => i.Category)
                                 .Where(i => i.ProductCategories.Any(a => a.Category.Name == category));
                 }
-                return products.ToList();
+
+                return products.Skip((page - 1) * pageSize).Take(pageSize).ToList();
             }
         }
     }

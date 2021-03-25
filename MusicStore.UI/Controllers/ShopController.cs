@@ -18,11 +18,13 @@ namespace MusicStore.UI.Controllers
             _productService = productService;
         }
 
-        public IActionResult List(string category)
+        public IActionResult List(string category, int page = 1)
         {
+            const int pageSize = 3;
+
             ProductListModel model = new ProductListModel
             {
-                Products = _productService.GetProductsByCategory(category)
+                Products = _productService.GetProductsByCategory(category, page, pageSize)
             };
 
             return View(model);

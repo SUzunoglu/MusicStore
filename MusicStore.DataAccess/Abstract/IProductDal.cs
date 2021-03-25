@@ -10,6 +10,6 @@ namespace MusicStore.DataAccess.Abstract
     public interface IProductDal : IEntityRepository<Product>
     {
         Product GetProductDetails(int id);
-        List<Product> GetProductsByCategory(string category);
+        List<Product> GetProductsByCategory(string category, int page, int pageSize);
     }
 }
