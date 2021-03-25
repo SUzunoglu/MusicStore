@@ -21,7 +21,8 @@ namespace MusicStore.UI.ViewComponents
         {
             CategoryListViewModel model = new CategoryListViewModel()
             {
-                Categories = _categoryService.GetAll()
+                Categories = _categoryService.GetAll(),
+                SelectedCategory = RouteData.Values["category"]?.ToString()
             };
             return View(model);
         }
