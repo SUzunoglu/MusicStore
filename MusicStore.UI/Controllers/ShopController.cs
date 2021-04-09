@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using MusicStore.Business.Abstract;
 using MusicStore.Entities.Concrete;
 using MusicStore.UI.Models;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static MusicStore.UI.Models.ProductListModel;
 
 namespace MusicStore.UI.Controllers
 {
@@ -21,9 +23,16 @@ namespace MusicStore.UI.Controllers
         public IActionResult List(string category, int page = 1)
         {
             const int pageSize = 3;
-
+            
             ProductListModel model = new ProductListModel
             {
+                PagingInfo = new PagingInfo()
+                {
+                    TotalItems = _productService.GetCountByCategory(category),
+                    CurrentPage = page,
+                    ItemsPerPage = pageSize,
+                    CurrentCategory = category
+                },
                 Products = _productService.GetProductsByCategory(category, page, pageSize)
             };
 

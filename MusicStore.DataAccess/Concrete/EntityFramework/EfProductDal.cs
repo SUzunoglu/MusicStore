@@ -11,6 +11,24 @@ namespace MusicStore.DataAccess.Concrete.EntityFramework
 {
     public class EfProductDal : EfEntityRepositoryBase<Product, MusicStoreContext>, IProductDal
     {
+        public int GetCountByCategory(string category)
+        {
+            using (var context = new MusicStoreContext())
+            {
+                var products = context.Products.AsQueryable();
+
+                if (!string.IsNullOrEmpty(category))
+                {
+                    products = products
+                                .Include(i => i.ProductCategories)
+                                .ThenInclude(i => i.Category)
+                                .Where(i => i.ProductCategories.Any(a => a.Category.Name == category));
+                }
+
+                return products.Count();
+            }
+        }
+
         public Product GetProductDetails(int id)
         {
             using (var context = new MusicStoreContext())
