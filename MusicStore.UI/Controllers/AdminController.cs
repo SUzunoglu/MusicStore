@@ -20,7 +20,12 @@ namespace MusicStore.UI.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            ProductListModel model = new ProductListModel
+            {
+                Products = _productService.GetAll()
+            };
+
+            return View(model);
         }
 
         public IActionResult CreateProduct()

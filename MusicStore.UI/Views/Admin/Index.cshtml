@@ -1,0 +1,52 @@
+﻿@model ProductListModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Admin Ürün Listesi</h1>
+<hr />
+
+@if (Model.Products.Count > 0)
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td style="width:30px;">Id</td>
+                <td style="width:100px;">Image</td>
+                <td>Name</td>
+                <td style="width:15px;">Price</td>
+                <td style="width:150px;"></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.Products)
+            {
+                <tr>
+                    <td>@product.Id</td>
+                    <td>
+                        <img src="~/img/@product.ImageUrl" width="100" />
+                    </td>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>
+                        <a class="btn btn-info btn-sm mr-2" href="/admin/products/@product.Id">Güncelle</a>
+                        <a class="btn btn-danger btn-sm" href="#">Sil</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning">
+        <h4>Eklenmiş Ürün Yok</h4>
+    </div>
+}
+
+
+
