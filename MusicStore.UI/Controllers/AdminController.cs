@@ -39,9 +39,9 @@ namespace MusicStore.UI.Controllers
             var entity = new Product()
             {
                 Name = model.Name,
-                Price=model.Price,
-                Description=model.Description,
-                ImageUrl=model.ImageUrl
+                Price = model.Price,
+                Description = model.Description,
+                ImageUrl = model.ImageUrl
             };
 
             _productService.Add(entity);
@@ -51,14 +51,14 @@ namespace MusicStore.UI.Controllers
 
         public IActionResult Edit(int? id)
         {
-            if (id==null)
+            if (id == null)
             {
                 return NotFound();
             }
 
             var entity = _productService.GetById((int)id);
 
-            if (entity==null)
+            if (entity == null)
             {
                 return NotFound();
             }
@@ -80,7 +80,7 @@ namespace MusicStore.UI.Controllers
         {
             var entity = _productService.GetById(model.Id);
 
-            if (entity==null)
+            if (entity == null)
             {
                 return NotFound();
             }
@@ -91,6 +91,19 @@ namespace MusicStore.UI.Controllers
             entity.Price = model.Price;
 
             _productService.Update(entity);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int productId)
+        {
+            var entity = _productService.GetById(productId);
+
+            if (entity != null)
+            {
+                _productService.Delete(entity);
+            }
 
             return RedirectToAction("Index");
         }
