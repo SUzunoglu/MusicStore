@@ -3,19 +3,19 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Admin Ürün Listesi</h1>
+<h1>Ürün Güncelle</h1>
 <hr />
 
 @if (Model.Products.Count > 0)
 {
-    <table class="table table-bordered">
+    <table class="table table-bordered" style="text-align:center">
         <thead>
             <tr>
                 <td style="width:30px;">Id</td>
                 <td style="width:100px;">Image</td>
-                <td>Name</td>
+                <td style="width:100px;">Name</td>
                 <td style="width:15px;">Price</td>
-                <td style="width:150px;"></td>
+                <td style="width:100px;">Edit</td>
             </tr>
         </thead>
         <tbody>
@@ -34,11 +34,7 @@
                     </td>
                 </tr>
             }
-
         </tbody>
-        <tr>
-            <td></td>
-        </tr>
     </table>
 }
 else

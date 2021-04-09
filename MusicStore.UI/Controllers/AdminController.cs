@@ -46,7 +46,53 @@ namespace MusicStore.UI.Controllers
 
             _productService.Add(entity);
 
-            return Redirect("Index");
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id==null)
+            {
+                return NotFound();
+            }
+
+            var entity = _productService.GetById((int)id);
+
+            if (entity==null)
+            {
+                return NotFound();
+            }
+
+            ProductModel model = new ProductModel
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                ImageUrl = entity.ImageUrl,
+                Description = entity.Description,
+                Price = entity.Price
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(ProductModel model)
+        {
+            var entity = _productService.GetById(model.Id);
+
+            if (entity==null)
+            {
+                return NotFound();
+            }
+
+            entity.Name = model.Name;
+            entity.Description = model.Description;
+            entity.ImageUrl = model.ImageUrl;
+            entity.Price = model.Price;
+
+            _productService.Update(entity);
+
+            return RedirectToAction("Index");
         }
     }
 }
