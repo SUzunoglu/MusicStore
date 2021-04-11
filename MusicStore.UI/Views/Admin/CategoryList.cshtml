@@ -1,36 +1,30 @@
-﻿@model ProductListModel
+﻿@model CategoryListModel
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "CategoryList";
 }
 
-<h1>Ürün Güncelle</h1>
+<h1>Kategori Güncelle</h1>
 <hr />
 
-@if (Model.Products.Count > 0)
+@if (Model.Categories.Count > 0)
 {
     <table class="table table-bordered" style="text-align:center">
         <thead>
             <tr>
                 <td style="width:30px;">Id</td>
-                <td style="width:100px;">Image</td>
                 <td style="width:100px;">Name</td>
-                <td style="width:15px;">Price</td>
                 <td style="width:100px;">Edit</td>
             </tr>
         </thead>
         <tbody>
-            @foreach (var product in Model.Products)
+            @foreach (var product in Model.Categories)
             {
                 <tr>
                     <td>@product.Id</td>
-                    <td>
-                        <img src="~/img/@product.ImageUrl" width="100" />
-                    </td>
                     <td>@product.Name</td>
-                    <td>₺@product.Price</td>
                     <td>
                         <a class="btn btn-outline-info btn-sm mr-2" href="/admin/products/@product.Id">Güncelle</a>
-                        <form action="/admin/delete" method="post" style="display:inline">
+                        <form action="/admin/deleteproduct" method="post" style="display:inline">
                             <input type="hidden" name="productId" value="@product.Id" />
                             <button type="submit" class="btn btn-outline-danger btn-sm">Sil</button>
                         </form>
@@ -46,8 +40,4 @@ else
         <h4>Eklenmiş Ürün Yok</h4>
     </div>
 }
-
-
-
-
 

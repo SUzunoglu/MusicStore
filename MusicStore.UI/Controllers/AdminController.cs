@@ -12,13 +12,15 @@ namespace MusicStore.UI.Controllers
     public class AdminController : Controller
     {
         private IProductService _productService;
+        private ICategoryService _categoryService;
 
-        public AdminController(IProductService productService)
+        public AdminController(IProductService productService, ICategoryService categoryService)
         {
             _productService = productService;
+            _categoryService = categoryService;
         }
 
-        public IActionResult Index()
+        public IActionResult ProductList()
         {
             ProductListModel model = new ProductListModel
             {
@@ -49,7 +51,7 @@ namespace MusicStore.UI.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Edit(int? id)
+        public IActionResult EditProduct(int? id)
         {
             if (id == null)
             {
@@ -76,7 +78,7 @@ namespace MusicStore.UI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(ProductModel model)
+        public IActionResult EditProduct(ProductModel model)
         {
             var entity = _productService.GetById(model.Id);
 
@@ -96,7 +98,7 @@ namespace MusicStore.UI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(int productId)
+        public IActionResult DeleteProduct(int productId)
         {
             var entity = _productService.GetById(productId);
 
@@ -106,6 +108,15 @@ namespace MusicStore.UI.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        public IActionResult CategoryList()
+        {
+            CategoryListModel model = new CategoryListModel()
+            {
+                Categories = _categoryService.GetAll()
+            };
+            return View(model);
         }
     }
 }

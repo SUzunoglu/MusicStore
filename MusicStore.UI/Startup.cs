@@ -49,13 +49,13 @@ namespace MusicStore.UI
                 routes.MapRoute(
                     name: "adminProducts",
                     template: "admin/products",
-                    defaults: new { controller = "Admin", action = "Index" }
+                    defaults: new { controller = "Admin", action = "ProductList" }
                 );
 
                 routes.MapRoute(
                     name: "adminProducts",
                     template: "admin/products/{id?}",
-                    defaults: new { controller = "Admin", action = "Edit" }
+                    defaults: new { controller = "Admin", action = "EditProduct" }
                 );
 
                 routes.MapRoute(
