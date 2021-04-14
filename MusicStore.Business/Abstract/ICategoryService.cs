@@ -12,5 +12,6 @@ namespace MusicStore.Business.Abstract
         void Delete(Category entity);
 
         List<Category> GetAll();
+        Category GetById(int id);
     }
 }

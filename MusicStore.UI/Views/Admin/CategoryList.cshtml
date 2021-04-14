@@ -23,9 +23,9 @@
                     <td>@product.Id</td>
                     <td>@product.Name</td>
                     <td>
-                        <a class="btn btn-outline-info btn-sm mr-2" href="/admin/products/@product.Id">Güncelle</a>
-                        <form action="/admin/deleteproduct" method="post" style="display:inline">
-                            <input type="hidden" name="productId" value="@product.Id" />
+                        <a class="btn btn-outline-info btn-sm mr-2" href="/admin/editcategory/@product.Id">Güncelle</a>
+                        <form action="/admin/deletecategory" method="post" style="display:inline">
+                            <input type="hidden" name="categoryId" value="@product.Id" />
                             <button type="submit" class="btn btn-outline-danger btn-sm">Sil</button>
                         </form>
                     </td>

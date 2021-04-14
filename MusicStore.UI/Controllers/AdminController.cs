@@ -48,7 +48,7 @@ namespace MusicStore.UI.Controllers
 
             _productService.Add(entity);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("ProductList");
         }
 
         public IActionResult EditProduct(int? id)
@@ -94,7 +94,7 @@ namespace MusicStore.UI.Controllers
 
             _productService.Update(entity);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("ProductList");
         }
 
         [HttpPost]
@@ -107,7 +107,7 @@ namespace MusicStore.UI.Controllers
                 _productService.Delete(entity);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("ProductList");
         }
 
         public IActionResult CategoryList()
@@ -117,6 +117,66 @@ namespace MusicStore.UI.Controllers
                 Categories = _categoryService.GetAll()
             };
             return View(model);
+        }
+
+        public IActionResult CreateCategory()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateCategory(CategoryModel model)
+        {
+            var entity = new Category()
+            {
+                Name = model.Name
+            };
+
+            _categoryService.Add(entity);
+
+            return RedirectToAction("CategoryList");
+        }
+
+        public IActionResult EditCategory(int id)
+        {
+            var entity = _categoryService.GetById(id);
+
+            CategoryModel model = new CategoryModel()
+            {
+                Id = entity.Id,
+                Name = entity.Name
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditCategory(CategoryModel model)
+        {
+            var entity = _categoryService.GetById(model.Id);
+
+            if (entity == null)
+            {
+                return NotFound();
+            }
+
+            entity.Name = model.Name;
+            _categoryService.Update(entity);
+
+            return RedirectToAction("CategoryList");
+        }
+
+        [HttpPost]
+        public IActionResult DeleteCategory(int categoryId)
+        {
+            var entity = _categoryService.GetById(categoryId);
+
+            if (entity != null)
+            {
+                _categoryService.Delete(entity);
+            }
+
+            return RedirectToAction("CategoryList");
         }
     }
 }
