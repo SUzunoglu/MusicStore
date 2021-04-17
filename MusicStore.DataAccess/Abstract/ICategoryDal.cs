@@ -6,8 +6,8 @@ using System.Text;
 
 namespace MusicStore.DataAccess.Abstract
 {
-    public interface ICategoryDal : IEntityRepository<Category> 
+    public interface ICategoryDal : IEntityRepository<Category>
     {
-
+        Category GetByIdWithProducts(int id);
     }
 }

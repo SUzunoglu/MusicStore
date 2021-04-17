@@ -13,5 +13,6 @@ namespace MusicStore.Business.Abstract
 
         List<Category> GetAll();
         Category GetById(int id);
+        Category GetByIdWithProducts(int id);   
     }
 }
