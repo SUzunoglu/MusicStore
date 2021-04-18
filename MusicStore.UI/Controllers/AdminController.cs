@@ -58,7 +58,7 @@ namespace MusicStore.UI.Controllers
                 return NotFound();
             }
 
-            var entity = _productService.GetById((int)id);
+            var entity = _productService.GetByIdWithCategories((int)id);
 
             if (entity == null)
             {
@@ -71,14 +71,17 @@ namespace MusicStore.UI.Controllers
                 Name = entity.Name,
                 ImageUrl = entity.ImageUrl,
                 Description = entity.Description,
-                Price = entity.Price
+                Price = entity.Price,
+                SelectedCategories = entity.ProductCategories.Select(i => i.Category).ToList()
             };
+
+            ViewBag.Categories = _categoryService.GetAll();
 
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult EditProduct(ProductModel model)
+        public IActionResult EditProduct(ProductModel model, int[] categoryIds)
         {
             var entity = _productService.GetById(model.Id);
 
@@ -92,7 +95,7 @@ namespace MusicStore.UI.Controllers
             entity.ImageUrl = model.ImageUrl;
             entity.Price = model.Price;
 
-            _productService.Update(entity);
+            _productService.Update(entity, categoryIds);
 
             return RedirectToAction("ProductList");
         }
@@ -178,6 +181,13 @@ namespace MusicStore.UI.Controllers
             }
 
             return RedirectToAction("CategoryList");
+        }
+
+        [HttpPost]
+        public IActionResult DeleteFromCategory(int categoryId, int productId)
+        {
+            _categoryService.DeleteFromCategory(categoryId, productId);
+            return Redirect("/admin/editcategory/" + categoryId);
         }
     }
 }

@@ -26,6 +26,11 @@ namespace MusicStore.Business.Concrete
             _categoryDal.Delete(entity);
         }
 
+        public void DeleteFromCategory(int categoryId, int productId)
+        {
+            _categoryDal.DeleteFromCategory(categoryId, productId);
+        }
+
         public List<Category> GetAll()
         {
             return _categoryDal.GetAll();
