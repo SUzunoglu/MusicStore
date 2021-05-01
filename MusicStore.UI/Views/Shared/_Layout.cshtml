@@ -13,19 +13,22 @@
     <link rel="stylesheet" href="~/css/style.css" />
 </head>
 <body>
-    <header> 
-
+    <header>
         <partial name="_navbar" />
 
-        <div class="container pt-100 mb-5"> 
+        <div class="container pt-100 mb-5">
             @RenderBody()
         </div>
     </header>
     <footer class="py-5 bg-dark text-white text-center">
         &copy; Copyright Hüsnü Müzik 2021 <i class="fas fa-headphones"></i>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    @RenderSection("Scripts", false)
+
 </body>
 </html>
 

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MusicStore.Business.Abstract
 {
-    public interface IProductService
+    public interface IProductService : IValidator<Product>
     {
         Product GetById(int id);
         Product GetProductDetails(int id);
@@ -14,7 +14,7 @@ namespace MusicStore.Business.Abstract
         int GetCountByCategory(string category);
         Product GetByIdWithCategories(int id);
 
-        void Add(Product entity);
+        bool Add(Product entity);
         void Update(Product entity);
         void Delete(Product entity);
         void Update(Product entity, int[] categoryIds);
